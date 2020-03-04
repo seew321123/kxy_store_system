@@ -1,0 +1,42 @@
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="wid=device-width,initial-scale=1">
+    <title>科兴宇电子系统</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            </button>
+            <a class="navbar-brand" href="{% url 'kxy_store:index' %}">系统首页</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'kxy_store:stores' %}">仓库系统</a></li>
+                <li><a href="{% url 'kxy_project:project' %}">项目备案系统</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li>欢迎使用本系统，你好，{{ user.username }}。<a href="{% url 'users:logout' %}">注销</a></li>
+                {% else %}
+                <a href="{% url 'users:login' %}">登录</a>
+                {% endif %}
+                <!--接下来如果增加了用户登录，就要在这里修改内容了 -->
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div>
+    {% block content %}
+    {% endblock content %}
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{% extends 'kxy_store/base.html' %}
+{% block content %}
+
+{% for store in stores %}
+<p><a href="{% url 'kxy_store:store' store.id %}">{{ store}}</a></p>
+{% endfor %}
+
+{% endblock content %}

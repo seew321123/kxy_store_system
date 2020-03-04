@@ -1,0 +1,36 @@
+{% extends 'kxy_store/base.html' %}
+{% block content %}
+
+<h3><small>当前仓库:</small>{{ store }}</h3>
+    {% if user.username == seew321123 %}
+    {% endif %}
+    <form method="post" action="{% url 'kxy_store:search' store.id %}">
+    {% csrf_token %}
+    快速检索：<input type="text" name="kw" />
+    <button name="submit">查询</button>
+    </form>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>产品名称</th>
+        <th>产品数量</th>
+        <th>计量单位</th>
+        <th>产品单价</th>
+        {% if user.username == 'seew321123' %}
+            <th>操作</th>
+        {% endif %}
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td>{{ product }}</td>
+        <td>{{product.quantity}}</td>
+        <td>{{product.unit}}</td>
+        <td>{{product.price}}</td>
+        {% if user.username == 'seew321123' %}
+            <td><a href="{% url 'kxy_store:edit' product.id %}">编辑</a>&nbsp&nbsp&nbsp<a onclick="return window.confirm('确定删除这条数据吗？请三思啊！');" href="{% url 'kxy_store:delete' product.id %}">删除</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+    <p><a href="{% url 'kxy_store:add' store.id %}">新增产品</a></p>
+{% endblock content %}
+

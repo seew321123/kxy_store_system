@@ -1,0 +1,9 @@
+{% extends "kxy_store/base.html" %}
+{% block content %}
+<h3>更新产品信息</h3>
+    <form action="{% url 'kxy_store:edit' product.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">更新</button>
+    </form>
+{% endblock content %}

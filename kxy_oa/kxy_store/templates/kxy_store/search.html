@@ -1,0 +1,24 @@
+{% extends 'kxy_store/base.html' %}
+{% block content %}
+
+<h3><small>当前仓库:</small>{{ store }}</h3>
+<p><a href="{% url 'kxy_store:search' store.id %}">查询</a></p>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>产品名称</th>
+        <th>产品编号</th>
+        <th>产品数量</th>
+        <th>产品单价</th>
+        <th>计量单位</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td>{{ product }}</td>
+        <td>{{ product.id }}</td>
+        <td>{{product.quantity}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.unit}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

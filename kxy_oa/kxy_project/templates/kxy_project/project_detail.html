@@ -1,0 +1,19 @@
+{% extends 'kxy_store/base.html' %}
+{% block content %}
+    <a href="{% url 'kxy_project:project' %}">项目总览</a>&nbsp>&nbsp<a href="{% url 'kxy_project:my_project' %}">管理我的项目</a>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>项目信息</h3>
+        </div>
+        <div class="panel-body">
+            <p>项目名称：{{ project.name }}</p>
+            <p>登记时间：{{ project.date_added }}</p>
+            <p>项目负责人：{{ project.owner }}</p>
+            <p>客户名称：{{ project.client }}</p>
+            <p>客户对接人：{{ project.client_human }}</p>
+            <p>客户联系方式：{{ project.client_pn }}</p>
+            <p>项目详情：{{ project.project_inf }}</p>
+        </div>
+
+    </div>
+{% endblock content %}
